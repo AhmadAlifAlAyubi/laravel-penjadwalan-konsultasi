@@ -1,6 +1,38 @@
 <div class="card">
   <div class="card-header">
     <h3>Jam Operasional</h3>
+    <form action="{{ route('simpan-jam-operasional') }}" method="POST">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md">
+            <div class="form-group">
+              <label for="tanggal_mulai">Tanggal Mulai</label>
+              <input type="date" class="form-control" id="tanggal_mulai" placeholder="Tanggal Mulai">
+            </div>
+            <div class="form-group">
+              <label for="jam_mulai">Jam</label>
+              <input type="time" class="form-control" id="jam_mulai" placeholder="Jam Mulai">
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-group">
+              <label for="tanggal_selesai">Tanggal Selesai</label>
+              <input type="date" class="form-control" id="tanggal_selesai" placeholder="Tanggal Selesai">
+            </div>
+            <div class="form-group">
+              <label for="jam_selesai">Jam</label>
+              <input type="time" class="form-control" id="jam_selesai" placeholder="Tanggal Selesai">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary ms-1" data-bs-dismiss="modal">
+          <i class="bx bx-check d-block d-sm-none"></i>
+          <span class="d-none d-sm-block">Tambah</span>
+        </button>
+      </div>
+    </form>
   </div>
   <div class="card-body">
     @if (auth()->user()->role === 'admin')

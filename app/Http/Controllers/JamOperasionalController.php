@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JamOperasional;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class JamOperasionalController extends Controller
 {
@@ -14,7 +15,8 @@ class JamOperasionalController extends Controller
      */
     public function index()
     {
-        //
+        $jamOperasional = JamOperasional::all();
+        return view('kalender.index', compact('jamOperasional'));
     }
 
     /**
@@ -24,7 +26,7 @@ class JamOperasionalController extends Controller
      */
     public function create()
     {
-        //
+        return view('kalender.index');
     }
 
     /**
@@ -35,7 +37,15 @@ class JamOperasionalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
+            'jam_mulai' => 'required',
+            'jam_selesai' => 'required',
+        ]);
+        JamOperasional::create($request->all());
+
+        return redirect('jam-operasional');
     }
 
     /**
@@ -46,7 +56,7 @@ class JamOperasionalController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('jam.show', compact('jam'));
     }
 
     /**
@@ -57,7 +67,7 @@ class JamOperasionalController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('jam.edit', compact('jam'));
     }
 
     /**
@@ -67,9 +77,16 @@ class JamOperasionalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, JamOperasional $jam)
     {
-        //
+        $request->validate([
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
+            'jam_mulai' => 'required',
+            'jam_selesai' => 'required',
+        ]);
+        $jam->update($request->all());
+        return redirect()->route('jam.index');
     }
 
     /**
@@ -78,8 +95,9 @@ class JamOperasionalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($jam)
     {
-        //
+        $jam->delete();
+        return redirect()->route('jam.index');
     }
 }
