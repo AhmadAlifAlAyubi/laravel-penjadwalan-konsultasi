@@ -15,8 +15,8 @@ class JamOperasionalController extends Controller
      */
     public function index()
     {
-        $jamOperasional = JamOperasional::all();
-        return view('kalender.index', compact('jamOperasional'));
+        $jamOperasi = JamOperasional::all();
+        return view('kalender.index', compact('jamOperasi'));
     }
 
     /**

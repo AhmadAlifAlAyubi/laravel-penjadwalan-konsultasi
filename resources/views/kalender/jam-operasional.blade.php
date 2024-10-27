@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">
     <h3>Jam Operasional</h3>
-    <form action="{{ route('simpan-jam-operasional') }}" method="POST">
+    <form action="{{ route('store-jam-operasional') }}" method="POST">
       <div class="modal-body">
         <div class="row">
           <div class="col-md">
@@ -41,7 +41,7 @@
     <div class="table-responsive">
       <table class="table mb-0">
         <thead>
-          @foreach ($jamOperasional as $jam)
+          @foreach ($jamOperasi as $jam)
             <tr>
               <th style="width: 40%">
                 Tanggal: {{ $jam->tanggal_mulai? \Carbon\Carbon::parse($jam->tanggal_mulai)->locale('id')->translatedFormat('d F Y'): '' }} s/d
